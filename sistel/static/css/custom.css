@@ -1,0 +1,87 @@
+.elemento.over {
+  border: 2px dashed #000;
+}
+#contenedor.over {
+  border: 2px dashed #000;
+}
+
+*[draggable=true] {
+  -moz-user-select:none;
+  -khtml-user-drag: element;
+  cursor: move;
+}
+
+.case_background{
+    background: url(/static/img/case_background.png) right no-repeat;
+}
+.placa_background{
+    background: url(/static/img/placa_background.png) right no-repeat;
+}
+.memoria_background{
+    background: url(/static/img/memoria_background.png) right no-repeat;
+}
+.procesador_background{
+    background: url(/static/img/procesador_background.png) right no-repeat;
+}
+.disco_background{
+    background: url(/static/img/disco_background.png) right no-repeat;
+}
+.monitor_background{
+    background: url(/static/img/monitor_background.png) right no-repeat;
+}
+.teclado_background{
+    background: url(/static/img/teclado_background.png) right no-repeat;
+}
+.mouse_background{
+    background: url(/static/img/mouse_background.png) right no-repeat;
+}
+.audio_background{
+    background: url(/static/img/audio_background.png) right no-repeat;
+}
+.impresora_background{
+    background: url(/static/img/impresora_background.png) right no-repeat;
+}
+.estabilizador_background{
+    background: url(/static/img/estabilizador_background.png) right no-repeat;
+}
+
+.lista {
+    margin: 0;
+    display: table;
+    width: 100%;
+    margin-top: 3px;
+}
+.lista li {
+    display: table-cell;
+    width: 1%;
+    float: none;
+    text-align: center;
+    border-radius: 15px;
+}
+.lista li a {
+    font-weight: bold;
+    text-align: center;
+    /*color:#384269;*/
+}
+.lista .active {
+    border: 1px solid #C2BDBD;
+    background-color: #333;
+}
+.lista li:hover,
+.lista li:focus{
+    border: 1px solid #C2BDBD;
+    border-bottom: 3px solid;
+    border-right: 3px solid;
+    background-color: #B4B4B4;
+    /*cursor: pointer;*/
+}
+.lista li a img {
+    width: 50px;
+    height: 50px;
+    margin-top: 5px;
+}
+
+#banner > a > h3{
+    color:white;
+    font-weight: bold;
+}

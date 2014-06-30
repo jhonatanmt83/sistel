@@ -1,0 +1,857 @@
+{% extends 'base.html' %}
+
+{% block sub_titulo %}ARMA TU PC{% endblock %}
+
+{% block proceso %}ARMA TU PC{% endblock %}
+
+{% block container%}
+<div class="row-fluid">
+    <div class="span12">
+        <div class="row-fluid">
+            <div class="span7">
+                <div class="row-fluid">
+                    <div class="span12" id='contenedor' 
+                        ondragenter="return dragEnter(event)"
+                        ondrop="return dragDrop(event)"
+                        ondragover="return dragOver(event)"
+                        ondragleave="return dragLeave(event)">
+                        <div class="span4">
+                            <div class="thumbnail">
+                                <img data-src="holder.js/150x200" alt="" id='img11'>
+                            </div>
+                            <div class="thumbnail">
+                                <img data-src="holder.js/150x100" alt="" id='img12'>
+                            </div>
+                            <div class="thumbnail">
+                                <img data-src="holder.js/150x100" alt="" id='img10'>
+                            </div>
+                        </div>
+                        <div class="span5">
+                            <div class="thumbnail">
+                                <img data-src="holder.js/194x200" alt="" id='img6'>
+                            </div>
+                            <div class="thumbnail">
+                                <img data-src="holder.js/194x100" alt="" id='img7'>
+                            </div>
+                            <div class="thumbnail">
+                                <img data-src="holder.js/194x100" alt="" id='img9'>
+                            </div>
+                        </div>
+                        <div class="span3">
+                            <div class="thumbnail">
+                                <img data-src="holder.js/108x200" alt="" id='img1'>
+                            </div>
+                            <div class="thumbnail">
+                                <img data-src="holder.js/108x100" alt="" id='img8'>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span12">
+                        <p id='elemento2'></p>
+                        <p id='elemento3'></p>
+                        <p id='elemento4'></p>
+                        <p id='elemento5'></p>
+                    </div>
+                    <div class="span12">
+                        <hr>
+                        <label class='span3'>Precio Total: S/. </label><input type='text' name='precio_total' id='precio_total' value='0.00' class='span2' readonly=readonly/>
+                        <hr>
+                            <input type='hidden' value='0' id='ele1' />
+                            <input type='hidden' value='0' id='ele2' />
+                            <input type='hidden' value='0' id='ele3' />
+                            <input type='hidden' value='0' id='ele4' />
+                            <input type='hidden' value='0' id='ele5' />
+                            <input type='hidden' value='0' id='ele6' />
+                            <input type='hidden' value='0' id='ele7' />
+                            <input type='hidden' value='0' id='ele8' />
+                            <input type='hidden' value='0' id='ele9' />
+                            <input type='hidden' value='0' id='ele10' />
+                            <input type='hidden' value='0' id='ele11' />
+                            <input type='hidden' value='0' id='ele12' />
+                        <button class="btn btn-large btn-primary" type="button" id='imprimir'  onclick='imprime();'><i class='icon-print icon-white'></i> Imprimir</button>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="span5">
+                <div class="accordion" id="accordion2">
+                    <div class="accordion-group">
+                        <div class="accordion-heading case_background">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse1" data-toggle="tooltip" data-placement="left" title="" data-original-title="Clickeame">
+                            Cases
+                            </a>
+                        </div>
+                        <div id="collapse1" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <div class='span12'>
+                                    <select id="columnas1" onchange="sorter1.search('query')"></select>
+                                    <input type="text" id="query" onkeyup="sorter1.search('query')" />
+                                </div>
+                                <div class="span12">
+                                    <div>Mostrando <span id="startrecord1"></span>-<span id="endrecord1"></span> de <span id="totalrecords1"></span></div>
+                                </div>
+                                <div class="span12">
+                                <table cellpadding="0" cellspacing="0" border="0" id="table1" class="tinytable">
+                                    <thead>
+                                        <tr>
+                                            <th class="nosort"><h3>Modelo</h3></th>
+                                            <th class="nosort"><h3>Precio</h3></th>
+                                        </tr>
+                                    </thead>
+                                        {% for case in datos.cases %}
+                                        <tr class='elemento' draggable="true" id='1-{{case.pk}}'>
+                                            <td><a href="{{case.imagen.url}}" rel="lightbox"><img src="{{case.imagen.url_50x80}}" rel="lightbox"></a> {{case.modelo}}</td>
+                                            <td>{{case.precio}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading placa_background">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse2" data-toggle="tooltip" data-placement="left" title="" data-original-title="Clickeame">
+                            Placas Madre
+                            </a>
+                        </div>
+                        <div id="collapse2" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <div class='span12'>
+                                    <select id="columnas2" onchange="sorter2.search('query2')"></select>
+                                    <input type="text" id="query2" onkeyup="sorter2.search('query2')" />
+                                </div>
+                                <div class="span12">
+                                    <div>Mostrando <span id="startrecord2"></span>-<span id="endrecord2"></span> de <span id="totalrecords2"></span></div>
+                                </div>
+                                <div class="span12">
+                                <table cellpadding="0" cellspacing="0" border="0" id="table2" class="tinytable">
+                                    <thead>
+                                        <tr>
+                                            <th class="nosort"><h3>Modelo</h3></th>
+                                            <th class="nosort"><h3>Precio</h3></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for placa in datos.placas %}
+                                        <tr class='elemento' draggable="true" id='2-{{placa.pk}}'>
+                                            <td>{{placa.modelo}}</td>
+                                            <td>{{placa.precio}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                    
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading memoria_background">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse3" data-toggle="tooltip" data-placement="left" title="" data-original-title="Clickeame">
+                            Memorias RAM
+                            </a>
+                        </div>
+                        <div id="collapse3" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <div class='span12'>
+                                    <select id="columnas3" onchange="sorter3.search('query3')"></select>
+                                    <input type="text" id="query3" onkeyup="sorter3.search('query3')" />
+                                </div>
+                                <div class="span12">
+                                    <div>Mostrando <span id="startrecord3"></span>-<span id="endrecord3"></span> de <span id="totalrecords3"></span></div>
+                                </div>
+                                <div class="span12">
+                                <table cellpadding="0" cellspacing="0" border="0" id="table3" class="tinytable">
+                                    <thead>
+                                        <tr>
+                                            <th class="nosort"><h3>Modelo</h3></th>
+                                            <th class="nosort"><h3>Precio</h3></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id='memoria'>
+                                        {% for memoria in datos.memorias %}
+                                        <tr class='elemento' draggable="true" id='3-{{memoria.pk}}'>
+                                            <td>{{memoria.modelo}}</td>
+                                            <td>{{memoria.precio}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading procesador_background">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse4" data-toggle="tooltip" data-placement="left" title="" data-original-title="Clickeame">
+                            Procesador
+                            </a>
+                        </div>
+                        <div id="collapse4" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <div class='span12'>
+                                    <select id="columnas4" onchange="sorter4.search('query4')"></select>
+                                    <input type="text" id="query4" onkeyup="sorter4.search('query4')" />
+                                </div>
+                                <div class="span12">
+                                    <div>Mostrando <span id="startrecord4"></span>-<span id="endrecord4"></span> de <span id="totalrecords4"></span></div>
+                                </div>
+                                <div class="span12">
+                                <table cellpadding="0" cellspacing="0" border="0" id="table4" class="tinytable">
+                                    <thead>
+                                        <tr>
+                                            <th class="nosort"><h3>Modelo</h3></th>
+                                            <th class="nosort"><h3>Precio</h3></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id='procesador'>
+                                    {% for procesador in datos.procesadores %}
+                                        <tr class='elemento' draggable="true" id='4-{{procesador.pk}}'>
+                                            <td>{{procesador.modelo}}</td>
+                                            <td>{{procesador.precio}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading disco_background">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse5" data-toggle="tooltip" data-placement="left" title="" data-original-title="Clickeame">
+                            Disco Duro
+                            </a>
+                        </div>
+                        <div id="collapse5" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <div class='span12'>
+                                    <select id="columnas5" onchange="sorter5.search('query5')"></select>
+                                    <input type="text" id="query5" onkeyup="sorter5.search('query5')" />
+                                </div>
+                                <div class="span12">
+                                    <div>Mostrando <span id="startrecord5"></span>-<span id="endrecord5"></span> de <span id="totalrecords5"></span></div>
+                                </div>
+                                <div class="span12">
+                                <table cellpadding="0" cellspacing="0" border="0" id="table4" class="tinytable">
+                                    <thead>
+                                        <tr>
+                                            <th class="nosort"><h3>Modelo</h3></th>
+                                            <th class="nosort"><h3>Precio</h3></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id='disco'>
+                                    {% for disco in datos.discos %}
+                                        <tr class='elemento' draggable="true" id='5-{{disco.pk}}'>
+                                            <td>{{disco.modelo}}</td>
+                                            <td>{{disco.precio}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading monitor_background">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse6" data-toggle="tooltip" data-placement="left" title="" data-original-title="Clickeame">
+                            Monitor
+                            </a>
+                        </div>
+                        <div id="collapse6" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <div class='span12'>
+                                    <select id="columnas6" onchange="sorter6.search('query6')"></select>
+                                    <input type="text" id="query6" onkeyup="sorter6.search('query6')" />
+                                </div>
+                                <div class="span12">
+                                    <div>Mostrando <span id="startrecord6"></span>-<span id="endrecord6"></span> de <span id="totalrecords6"></span></div>
+                                </div>
+                                <div class="span12">
+                                <table cellpadding="0" cellspacing="0" border="0" id="table6" class="tinytable">
+                                    <thead>
+                                        <tr>
+                                            <th class="nosort"><h3>Modelo</h3></th>
+                                            <th class="nosort"><h3>Precio</h3></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id='monitor'>
+                                    {% for monitor in datos.monitores %}
+                                        <tr class='elemento' draggable="true" id='6-{{monitor.pk}}'>
+                                            <td><a href="{{monitor.imagen.url}}" rel="lightbox"><img src="{{monitor.imagen.url_50x50}}" rel="lightbox"></a> {{monitor.modelo}}</td>
+                                            <td>{{monitor.precio}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading teclado_background">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse7" data-toggle="tooltip" data-placement="left" title="" data-original-title="Clickeame">
+                            Teclado
+                            </a>
+                        </div>
+                        <div id="collapse7" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <div class='span12'>
+                                    <select id="columnas7" onchange="sorter7.search('query7')"></select>
+                                    <input type="text" id="query7" onkeyup="sorter7.search('query7')" />
+                                </div>
+                                <div class="span12">
+                                    <div>Mostrando <span id="startrecord7"></span>-<span id="endrecord7"></span> de <span id="totalrecords7"></span></div>
+                                </div>
+                                <div class="span12">
+                                <table cellpadding="0" cellspacing="0" border="0" id="table7" class="tinytable">
+                                    <thead>
+                                        <tr>
+                                            <th class="nosort"><h3>Modelo</h3></th>
+                                            <th class="nosort"><h3>Precio</h3></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id='teclado'>
+                                    {% for teclado in datos.teclados %}
+                                        <tr class='elemento' draggable="true" id='7-{{teclado.pk}}'>
+                                            <td><a href="{{teclado.imagen.url}}" rel="lightbox"><img src="{{teclado.imagen.url_50x50}}" rel="lightbox"></a> {{teclado.modelo}}</td>
+                                            <td>{{teclado.precio}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading mouse_background">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse8" data-toggle="tooltip" data-placement="left" title="" data-original-title="Clickeame">
+                            Mouse
+                            </a>
+                        </div>
+                        <div id="collapse8" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <div class='span12'>
+                                    <select id="columnas8" onchange="sorter8.search('query8')"></select>
+                                    <input type="text" id="query8" onkeyup="sorter8.search('query8')" />
+                                </div>
+                                <div class="span12">
+                                    <div>Mostrando <span id="startrecord8"></span>-<span id="endrecord8"></span> de <span id="totalrecords8"></span></div>
+                                </div>
+                                <div class="span12">
+                                <table cellpadding="0" cellspacing="0" border="0" id="table8" class="tinytable">
+                                    <thead>
+                                        <tr>
+                                            <th class="nosort"><h3>Modelo</h3></th>
+                                            <th class="nosort"><h3>Precio</h3></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id='mouse'>
+                                    {% for mouse in datos.mouses %}
+                                        <tr class='elemento' draggable="true" id='8-{{mouse.pk}}'>
+                                            <td><a href="{{mouse.imagen.url}}" rel="lightbox"><img src="{{mouse.imagen.url_50x50}}" rel="lightbox"></a> {{mouse.modelo}}</td>
+                                            <td>{{mouse.precio}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse9" data-toggle="tooltip" data-placement="left" title="" data-original-title="Clickeame">
+                            Camara Web
+                            </a>
+                        </div>
+                        <div id="collapse9" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <div class='span12'>
+                                    <select id="columnas9" onchange="sorter9.search('query9')"></select>
+                                    <input type="text" id="query9" onkeyup="sorter9.search('query9')" />
+                                </div>
+                                <div class="span12">
+                                    <div>Mostrando <span id="startrecord9"></span>-<span id="endrecord9"></span> de <span id="totalrecords9"></span></div>
+                                </div>
+                                <div class="span12">
+                                <table cellpadding="0" cellspacing="0" border="0" id="table9" class="tinytable">
+                                    <thead>
+                                        <tr>
+                                            <th class="nosort"><h3>Modelo</h3></th>
+                                            <th class="nosort"><h3>Precio</h3></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id='camara'>
+                                    {% for camara in datos.camaras %}
+                                        <tr class='elemento' draggable="true" id='9-{{camara.pk}}'>
+                                            <td><a href="{{camara.imagen.url}}" rel="lightbox"><img src="{{camara.imagen.url_50x50}}" rel="lightbox"></a> {{camara.modelo}}</td>
+                                            <td>{{camara.precio}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading audio_background">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse10" data-toggle="tooltip" data-placement="left" title="" data-original-title="Clickeame">
+                            Audio
+                            </a>
+                        </div>
+                        <div id="collapse10" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <div class='span12'>
+                                    <select id="columnas10" onchange="sorter10.search('query10')"></select>
+                                    <input type="text" id="query10" onkeyup="sorter10.search('query10')" />
+                                </div>
+                                <div class="span12">
+                                    <div>Mostrando <span id="startrecord10"></span>-<span id="endrecord10"></span> de <span id="totalrecords10"></span></div>
+                                </div>
+                                <div class="span12">
+                                <table cellpadding="0" cellspacing="0" border="0" id="table10" class="tinytable">
+                                    <thead>
+                                        <tr>
+                                            <th class="nosort"><h3>Modelo</h3></th>
+                                            <th class="nosort"><h3>Precio</h3></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id='audio'>
+                                    {% for parlante in datos.parlantes %}
+                                        <tr class='elemento' draggable="true" id='10-{{parlante.pk}}-1'>
+                                            <td><a href="{{parlante.imagen.url}}" rel="lightbox"><img src="{{parlante.imagen.url_50x50}}" rel="lightbox"></a> {{parlante.modelo}}</td>
+                                            <td>{{parlante.precio}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    {% for audifono in datos.audifonos %}
+                                        <tr class='elemento' draggable="true" id='10-{{audifono.pk}}-2'>
+                                            <td><a href="{{audifono.imagen.url}}" rel="lightbox"><img src="{{audifono.imagen.url_50x50}}" rel="lightbox"></a> {{audifono.modelo}}</td>
+                                            <td>{{audifono.precio}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading impresora_background">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse11" data-toggle="tooltip" data-placement="left" title="" data-original-title="Clickeame">
+                            Impresora
+                            </a>
+                        </div>
+                        <div id="collapse11" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <div class='span12'>
+                                    <select id="columnas11" onchange="sorter11.search('query11')"></select>
+                                    <input type="text" id="query11" onkeyup="sorter11.search('query11')" />
+                                </div>
+                                <div class="span12">
+                                    <div>Mostrando <span id="startrecord11"></span>-<span id="endrecord11"></span> de <span id="totalrecords11"></span></div>
+                                </div>
+                                <div class="span12">
+                                <table cellpadding="0" cellspacing="0" border="0" id="table11" class="tinytable">
+                                    <thead>
+                                        <tr>
+                                            <th class="nosort"><h3>Modelo</h3></th>
+                                            <th class="nosort"><h3>Precio</h3></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id='impresora'>
+                                    {% for impresora in datos.impresoras %}
+                                        <tr class='elemento' draggable="true" id='11-{{impresora.pk}}'>
+                                            <td><a href="{{impresora.imagen.url}}" rel="lightbox"><img src="{{impresora.imagen.url_50x50}}" rel="lightbox"></a> {{impresora.modelo}}</td>
+                                            <td>{{impresora.precio}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading estabilizador_background">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse12" data-toggle="tooltip" data-placement="left" title="" data-original-title="Clickeame">
+                            Estabilizador
+                            </a>
+                        </div>
+                        <div id="collapse12" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <div class='span12'>
+                                    <select id="columnas12" onchange="sorter12.search('query12')"></select>
+                                    <input type="text" id="query12" onkeyup="sorter12.search('query12')" />
+                                </div>
+                                <div class="span12">
+                                    <div>Mostrando <span id="startrecord12"></span>-<span id="endrecord12"></span> de <span id="totalrecords12"></span></div>
+                                </div>
+                                <div class="span12">
+                                <table cellpadding="0" cellspacing="0" border="0" id="table12" class="tinytable">
+                                    <thead>
+                                        <tr>
+                                            <th class="nosort"><h3>Modelo</h3></th>
+                                            <th class="nosort"><h3>Precio</h3></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id='estabilizador'>
+                                    {% for estabilizador in datos.estabilizadores %}
+                                        <tr class='elemento' draggable="true" id='12-{{estabilizador.pk}}'>
+                                            <td><a href="{{estabilizador.imagen.url}}" rel="lightbox"><img src="{{estabilizador.imagen.url_50x50}}" rel="lightbox"></a> {{estabilizador.modelo}}</td>
+                                            <td>{{estabilizador.precio}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+    
+
+{% block js %}
+<script src='/static/js/script.js'></script>
+<script type="text/javascript" src='/static/js/holder.js'></script>
+<script src="/static/js/lightbox.js"></script>
+{% endblock %}
+
+{% block js_end %}
+
+<script type="text/javascript" src="/static/js/tiny.js"></script>
+<script type="text/javascript" src="/static/js/custom.js"></script>
+<script type="text/javascript">
+    /* Sorters */
+    {% if datos.cases %}
+    var sorter1 = new TINY.table.sorter('sorter','table1',{
+        headclass:'head',
+        ascclass:'asc',
+        descclass:'desc',
+        evenclass:'evenrow',
+        oddclass:'oddrow',
+        evenselclass:'evenselected',
+        oddselclass:'oddselected',
+        paginate:true,
+        size:10,
+        colddid:'columnas1',
+        //currentid:'currentpage',
+        //totalid:'totalpages',
+        startingrecid:'startrecord1',
+        endingrecid:'endrecord1',
+        totalrecid:'totalrecords1',
+        //pageddid:'pagedropdown',
+        sortcolumn:0,
+        sortdir:1,
+        //columns:[{index:2, format:'$', decimals:2}],
+        init:true
+    });
+    {% endif %}
+    {% if datos.placas %}
+    var sorter2 = new TINY.table.sorter('sorter','table2',{
+        headclass:'head',
+        ascclass:'asc',
+        descclass:'desc',
+        evenclass:'evenrow',
+        oddclass:'oddrow',
+        evenselclass:'evenselected',
+        oddselclass:'oddselected',
+        paginate:true,
+        size:10,
+        colddid:'columnas2',
+        //currentid:'currentpage',
+        //totalid:'totalpages',
+        startingrecid:'startrecord2',
+        endingrecid:'endrecord2',
+        totalrecid:'totalrecords2',
+        //pageddid:'pagedropdown',
+        sortcolumn:0,
+        sortdir:1,
+        //columns:[{index:2, format:'$', decimals:2}],
+        init:true
+    });
+    {% endif %}
+    {% if datos.memorias %}
+    var sorter3 = new TINY.table.sorter('sorter','table3',{
+        headclass:'head',
+        ascclass:'asc',
+        descclass:'desc',
+        evenclass:'evenrow',
+        oddclass:'oddrow',
+        evenselclass:'evenselected',
+        oddselclass:'oddselected',
+        paginate:true,
+        size:10,
+        colddid:'columnas3',
+        //currentid:'currentpage',
+        //totalid:'totalpages',
+        startingrecid:'startrecord3',
+        endingrecid:'endrecord3',
+        totalrecid:'totalrecords3',
+        //pageddid:'pagedropdown',
+        sortcolumn:0,
+        sortdir:1,
+        //columns:[{index:2, format:'$', decimals:2}],
+        init:true
+    });
+    {% endif %}
+    {% if datos.procesadores %}
+    var sorter4 = new TINY.table.sorter('sorter','table4',{
+        headclass:'head',
+        ascclass:'asc',
+        descclass:'desc',
+        evenclass:'evenrow',
+        oddclass:'oddrow',
+        evenselclass:'evenselected',
+        oddselclass:'oddselected',
+        paginate:true,
+        size:10,
+        colddid:'columnas4',
+        //currentid:'currentpage',
+        //totalid:'totalpages',
+        startingrecid:'startrecord4',
+        endingrecid:'endrecord4',
+        totalrecid:'totalrecords4',
+        //pageddid:'pagedropdown',
+        sortcolumn:0,
+        sortdir:1,
+        //columns:[{index:2, format:'$', decimals:2}],
+        init:true
+    });
+    {% endif %}
+    {% if datos.discos %}
+    var sorter5 = new TINY.table.sorter('sorter','table5',{
+        headclass:'head',
+        ascclass:'asc',
+        descclass:'desc',
+        evenclass:'evenrow',
+        oddclass:'oddrow',
+        evenselclass:'evenselected',
+        oddselclass:'oddselected',
+        paginate:true,
+        size:10,
+        colddid:'columnas5',
+        //currentid:'currentpage',
+        //totalid:'totalpages',
+        startingrecid:'startrecord5',
+        endingrecid:'endrecord5',
+        totalrecid:'totalrecords5',
+        //pageddid:'pagedropdown',
+        sortcolumn:0,
+        sortdir:1,
+        //columns:[{index:2, format:'$', decimals:2}],
+        init:true
+    });
+    {% endif %}
+    {% if datos.monitores %}
+    var sorter6 = new TINY.table.sorter('sorter','table6',{
+        headclass:'head',
+        ascclass:'asc',
+        descclass:'desc',
+        evenclass:'evenrow',
+        oddclass:'oddrow',
+        evenselclass:'evenselected',
+        oddselclass:'oddselected',
+        paginate:true,
+        size:10,
+        colddid:'columnas6',
+        //currentid:'currentpage',
+        //totalid:'totalpages',
+        startingrecid:'startrecord6',
+        endingrecid:'endrecord6',
+        totalrecid:'totalrecords6',
+        //pageddid:'pagedropdown',
+        sortcolumn:0,
+        sortdir:1,
+        //columns:[{index:2, format:'$', decimals:2}],
+        init:true
+    });
+    {% endif %}
+    {% if datos.teclados %}
+    var sorter7 = new TINY.table.sorter('sorter','table7',{
+        headclass:'head',
+        ascclass:'asc',
+        descclass:'desc',
+        evenclass:'evenrow',
+        oddclass:'oddrow',
+        evenselclass:'evenselected',
+        oddselclass:'oddselected',
+        paginate:true,
+        size:10,
+        colddid:'columnas7',
+        //currentid:'currentpage',
+        //totalid:'totalpages',
+        startingrecid:'startrecord7',
+        endingrecid:'endrecord7',
+        totalrecid:'totalrecords7',
+        //pageddid:'pagedropdown',
+        sortcolumn:0,
+        sortdir:1,
+        //columns:[{index:2, format:'$', decimals:2}],
+        init:true
+    });
+    {% endif %}
+    {% if datos.mouses %}
+    var sorter8 = new TINY.table.sorter('sorter','table8',{
+        headclass:'head',
+        ascclass:'asc',
+        descclass:'desc',
+        evenclass:'evenrow',
+        oddclass:'oddrow',
+        evenselclass:'evenselected',
+        oddselclass:'oddselected',
+        paginate:true,
+        size:10,
+        colddid:'columnas8',
+        //currentid:'currentpage',
+        //totalid:'totalpages',
+        startingrecid:'startrecord8',
+        endingrecid:'endrecord8',
+        totalrecid:'totalrecords8',
+        //pageddid:'pagedropdown',
+        sortcolumn:0,
+        sortdir:1,
+        //columns:[{index:2, format:'$', decimals:2}],
+        init:true
+    });
+    {% endif %}
+    {% if datos.camaras %}
+    var sorter9 = new TINY.table.sorter('sorter','table9',{
+        headclass:'head',
+        ascclass:'asc',
+        descclass:'desc',
+        evenclass:'evenrow',
+        oddclass:'oddrow',
+        evenselclass:'evenselected',
+        oddselclass:'oddselected',
+        paginate:true,
+        size:10,
+        colddid:'columnas9',
+        //currentid:'currentpage',
+        //totalid:'totalpages',
+        startingrecid:'startrecord9',
+        endingrecid:'endrecord9',
+        totalrecid:'totalrecords9',
+        //pageddid:'pagedropdown',
+        sortcolumn:0,
+        sortdir:1,
+        //columns:[{index:2, format:'$', decimals:2}],
+        init:true
+    });
+    {% endif %}
+    {% if datos.parlantes or datos.audifonos %}
+    var sorter10 = new TINY.table.sorter('sorter','table10',{
+        headclass:'head',
+        ascclass:'asc',
+        descclass:'desc',
+        evenclass:'evenrow',
+        oddclass:'oddrow',
+        evenselclass:'evenselected',
+        oddselclass:'oddselected',
+        paginate:true,
+        size:10,
+        colddid:'columnas10',
+        //currentid:'currentpage',
+        //totalid:'totalpages',
+        startingrecid:'startrecord10',
+        endingrecid:'endrecord10',
+        totalrecid:'totalrecords10',
+        //pageddid:'pagedropdown',
+        sortcolumn:0,
+        sortdir:1,
+        //columns:[{index:2, format:'$', decimals:2}],
+        init:true
+    });
+    {% endif %}
+    {% if datos.impresoras %}
+    var sorter11 = new TINY.table.sorter('sorter','table11',{
+        headclass:'head',
+        ascclass:'asc',
+        descclass:'desc',
+        evenclass:'evenrow',
+        oddclass:'oddrow',
+        evenselclass:'evenselected',
+        oddselclass:'oddselected',
+        paginate:true,
+        size:10,
+        colddid:'columnas11',
+        //currentid:'currentpage',
+        //totalid:'totalpages',
+        startingrecid:'startrecord11',
+        endingrecid:'endrecord11',
+        totalrecid:'totalrecords11',
+        //pageddid:'pagedropdown',
+        sortcolumn:0,
+        sortdir:1,
+        //columns:[{index:2, format:'$', decimals:2}],
+        init:true
+    });
+    {% endif %}
+    {% if datos.estabilizadores %}
+    var sorter12 = new TINY.table.sorter('sorter','table12',{
+        headclass:'head',
+        ascclass:'asc',
+        descclass:'desc',
+        evenclass:'evenrow',
+        oddclass:'oddrow',
+        evenselclass:'evenselected',
+        oddselclass:'oddselected',
+        paginate:true,
+        size:10,
+        colddid:'columnas12',
+        //currentid:'currentpage',
+        //totalid:'totalpages',
+        startingrecid:'startrecord12',
+        endingrecid:'endrecord12',
+        totalrecid:'totalrecords12',
+        //pageddid:'pagedropdown',
+        sortcolumn:0,
+        sortdir:1,
+        //columns:[{index:2, format:'$', decimals:2}],
+        init:true
+    });
+    {% endif %}
+    /* End sorters*/
+</script>
+
+<script type="text/javascript">
+    $().ready(function(){
+        localStorage.clear();
+        $('.accordion-toggle').tooltip();
+    });
+</script>
+
+<script type="text/javascript">
+var drags = document.querySelectorAll('tr');
+[].forEach.call(drags, function(drag) {
+    drag.addEventListener('dragstart', dragStart, false);
+    drag.addEventListener('dragend', dragEnd, false);
+});
+//console.log("finish to add events for drags");
+</script>
+{% endblock %}
+
+{% block style_css %}
+<link rel="stylesheet" href="/static/css/styletiny.css" type="text/css" />
+<link href="/static/css/lightbox.css" rel="stylesheet" />
+<style type="text/css">
+#accordion2{
+    max-height: 530px;
+    overflow-y: auto;
+}
+.accordion-body{
+    max-height: 400px;
+    overflow-y: auto;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang='es'> 
+    <head> 
+        <meta charset='utf-8'>
+        <title>{% block titulo %}SISTEL | {% block sub_titulo %}{% endblock %}{% endblock %}</title>
+        <link rel='stylesheet' href='/static/css/bootstrapw.css'>
+        <link rel='stylesheet' href='/static/css/estilos.css'>
+        <link rel='stylesheet' href='/static/css/bootstrap-responsive.css'>
+        <link rel='stylesheet' href='/static/css/custom.css'>
+        <link rel='shortcut icon' href='/static/img/icono.png'>
+        {% block style_css %}{% endblock %}
+        <script src='/static/js/jquery-1.7.2.min.js'></script>
+        <!—[if lt IE 9]>
+        <script src='/static/js/html5shiv.js'></script>
+        <![endif]—>
+        <script src='/static/js/bootstrap.js'></script>
+        {% block js %}{% endblock %}
+        <style type="text/css">
+            
+        </style>
+    </head>
+<body>
+    <header class='container'>
+        <div class='page-header'>
+            <nav class='navbar navbar-fixed-top'>
+                <div class='navbar-inner'>
+                    <div class='container'>
+                        <div class="row-fluid">
+                        <div class="span12">
+                            <div class="span6" id='banner'>
+                                <a href="index.html" class="brand" class='active'>
+                                <h3>SISTEL INGENIEROS S.A.C.</h3><span>Lideres en tecnologia</span></a>
+                            </div>
+                            <div class="span6 lista">
+                                <ul>
+                                    <li class="active"><a href="#" class="inicio"><img src="/static/img/inicio.png"/><br>Inicio</a></li>
+                                    <li><a href="#" class="soporte"/><img src="/static/img/soporte.png"/><br>Soporte</a></li>
+                                    <li><a href="#" class="oferta"><img src="/static/img/oferta.png"/><br>Ofertas</a></li>
+                                    <li><a href="#" class="laptop"><img src="/static/img/laptop.png"/><br>Laptops</a></li>
+                                    <li><a href="#" class="oferta"><img src="/static/img/oferta.png"/><br>Equipos</a></li>
+                                    <li><a href="#" class="laptop"><img src="/static/img/laptop.png"/><br>Tablets</a></li>
+                                    <li><a href="#" class="oferta"><img src="/static/img/oferta.png"/><br>Impresoras</a></li>
+                                    <li><a href="#" class="laptop"><img src="/static/img/laptop.png"/><br>Laptops</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header> 
+
+
+    <section class='container'>
+        <div class='hero-unit'>
+            <h1>{% block proceso %}{% endblock %}</h1><hr>
+            <div class="row">
+                {% block container%}
+                <div class="span12">
+                    <div class="span2">
+                        {% block container1 %}{% endblock %}
+                    </div>
+                             
+                    <div class="span4 offset4">
+                        {% block container2 %}{% endblock %}
+                    </div>
+                </div>
+                {% endblock %}
+            </div>            
+        </div>
+    </section>
+
+    <footer class='container text-center'>
+        <p class="text-center">JAP TEAM &copy;2013</p>
+    </footer>
+</body>
+{% block js_end %}{% endblock %}
+</html>
